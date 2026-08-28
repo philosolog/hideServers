@@ -1,0 +1,41 @@
+.vc-hide-servers-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.vc-hide-servers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.vc-hide-servers-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-radius: 8px;
+    padding: 10px 12px;
+    background: var(--background-secondary);
+}
+
+.vc-hide-servers-name {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.vc-hide-servers-name strong {
+    overflow: hidden;
+    color: var(--header-primary);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.vc-hide-servers-name span {
+    color: var(--text-muted);
+    font-size: 12px;
+}
