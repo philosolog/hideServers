@@ -19,13 +19,10 @@ const STYLE_ID = "vc-hide-servers-rules";
 export function makeHiddenGuildCss(guildIds: string[]) {
     if (guildIds.length === 0) return "";
 
-    return guildIds.flatMap(guildId => {
+    return guildIds.map(guildId => {
         const guildSelector = `[data-list-item-id="guildsnav___${CSS.escape(guildId)}"]`;
 
-        return [
-            `[class*="listItem_"]:has(${guildSelector})`,
-            `[class*="listItem-"]:has(${guildSelector})`
-        ];
+        return `:where(div, li):has(> ${guildSelector})`;
     }).join(",\n") + " { display: none !important; }";
 }
 
