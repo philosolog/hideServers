@@ -24,7 +24,7 @@ export function makeHiddenGuildCss(guildIds: string[]) {
     return guildIds.map(guildId => {
         const guildSelector = `[data-list-item-id="guildsnav___${CSS.escape(guildId)}"]`;
 
-        return `:where(div, li):has(> ${guildSelector})`;
+        return `:where(div, li)[class^="listItem_"]:has(${guildSelector}),\n:where(div, li)[class*=" listItem_"]:has(${guildSelector})`;
     }).join(",\n") + " { display: none !important; }";
 }
 
