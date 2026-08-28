@@ -16,6 +16,19 @@ import { Forms, GuildStore, Menu, React, useStateFromStores } from "@webpack/com
 
 const STYLE_ID = "vc-hide-servers-rules";
 
+export function makeHiddenGuildCss(guildIds: string[]) {
+    if (guildIds.length === 0) return "";
+
+    return guildIds.flatMap(guildId => {
+        const guildSelector = `[data-list-item-id="guildsnav___${CSS.escape(guildId)}"]`;
+
+        return [
+            `[class*="listItem_"]:has(${guildSelector})`,
+            `[class*="listItem-"]:has(${guildSelector})`
+        ];
+    }).join(",\n") + " { display: none !important; }";
+}
+
 const settings = definePluginSettings({
     hiddenGuilds: {
         type: OptionType.CUSTOM,
@@ -36,9 +49,7 @@ function updateHiddenServerStyle() {
         document.head.append(style);
     }
 
-    style.textContent = settings.store.hiddenGuilds
-        .map(guildId => `[data-list-item-id="guildsnav___${CSS.escape(guildId)}"] { display: none !important; }`)
-        .join("\n");
+    style.textContent = makeHiddenGuildCss(settings.store.hiddenGuilds);
 }
 
 function setGuildHidden(guildId: string, hidden: boolean) {
