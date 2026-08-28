@@ -111,7 +111,7 @@ export default definePlugin({
     name: "HideServers",
     description: "Hide servers from the server list using their right-click context menu",
     authors: [Devs.philosolog],
-    tags: ["Servers", "Customisation"],
+    tags: ["Servers"],
     settings,
     contextMenus: {
         "guild-context": patchGuildContextMenu,
