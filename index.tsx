@@ -9,10 +9,12 @@ import "./style.css";
 import { findGroupChildrenByChildId, NavContextMenuPatchCallback } from "@api/ContextMenu";
 import { definePluginSettings } from "@api/Settings";
 import { Button } from "@components/Button";
+import { Heading } from "@components/Heading";
+import { Paragraph } from "@components/Paragraph";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { Guild } from "@vencord/discord-types";
-import { Forms, GuildStore, Menu, React, useStateFromStores } from "@webpack/common";
+import { GuildStore, Menu, React, useStateFromStores } from "@webpack/common";
 
 const STYLE_ID = "vc-hide-servers-rules";
 
@@ -64,13 +66,13 @@ function HiddenServers() {
     const guilds = useStateFromStores([GuildStore], () => GuildStore.getGuilds());
 
     if (hiddenGuilds.length === 0) {
-        return <Forms.FormText>No servers are hidden.</Forms.FormText>;
+        return <Paragraph>No servers are hidden.</Paragraph>;
     }
 
     return (
         <section className="vc-hide-servers-settings">
-            <Forms.FormTitle tag="h3">Hidden servers</Forms.FormTitle>
-            <Forms.FormText>Servers hidden from your server list. Use Show to restore one.</Forms.FormText>
+            <Heading tag="h3">Hidden servers</Heading>
+            <Paragraph>Servers hidden from your server list. Use Show to restore one.</Paragraph>
             <div className="vc-hide-servers-list">
                 {hiddenGuilds.map(guildId => (
                     <div className="vc-hide-servers-row" key={guildId}>
