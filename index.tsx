@@ -16,17 +16,11 @@ import definePlugin, { OptionType } from "@utils/types";
 import { Guild } from "@vencord/discord-types";
 import { GuildStore, Menu, React, useStateFromStores } from "@webpack/common";
 
+import { makeHiddenGuildCss } from "./css";
+
+export { makeHiddenGuildCss } from "./css";
+
 const STYLE_ID = "vc-hide-servers-rules";
-
-export function makeHiddenGuildCss(guildIds: string[]) {
-    if (guildIds.length === 0) return "";
-
-    return guildIds.map(guildId => {
-        const guildSelector = `[data-list-item-id="guildsnav___${CSS.escape(guildId)}"]`;
-
-        return `:where(div, li)[class^="listItem_"]:has(${guildSelector}),\n:where(div, li)[class*=" listItem_"]:has(${guildSelector})`;
-    }).join(",\n") + " { display: none !important; }";
-}
 
 const settings = definePluginSettings({
     hiddenGuilds: {
